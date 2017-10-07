@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "836780807991",
+    "firebase_url": "https://wallet-eazy-money.firebaseio.com",
+    "project_id": "wallet-eazy-money",
+    "storage_bucket": "wallet-eazy-money.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836780807991:android:fa145193e4f27521",
+        "android_client_info": {
+          "package_name": "com.khiancode.walleteazymoney"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836780807991-r29jenf3tch74a2ruggvsatpfu8vtojv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.khiancode.walleteazymoney",
+            "certificate_hash": "d0c925189ef4a599c89e6eaf3718b89c26db7e6a"
+          }
+        },
+        {
+          "client_id": "836780807991-v1r2b21pbgab5h50qn9mslu9lstecnh5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBskG68zs-x0HunLpdJ1sUUIHzD7sE5-A4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836780807991-v1r2b21pbgab5h50qn9mslu9lstecnh5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333"
+    tools:context="com.khiancode.walleteazymoney.SplashActivity"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ช่องทางเข้าสู่ระบบ"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textColor="#FFF"
+                    android:layout_margin="5dp"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="กรุณาเลือกช่องทางเข้าสู่ระบบ \nท่านสามารถเลือกช่องทางเข้าสู่ระบบได้อย่างอิสระ"
+                        android:textColor="#d9e5f3"
+                        android:textAlignment="center"/>
+                </FrameLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp">
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/login_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:background="#009a9a"
+                        android:drawableStart="@drawable/envelope"
+                        android:onClick="onClickSignIn"
+                        android:padding="16dp"
+                        android:text="เข้าสู่ระบบด้วยบัญชีอีเมล์"
+                        android:textColor="#FFF"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/login_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginTop="13dp"
+                        android:background="#009a9a"
+                        android:drawableStart="@drawable/simcard"
+                        android:padding="16dp"
+                        android:text="เข้าสู่ระบบด้วยเบอร์โทรศัพท์"
+                        android:textColor="#FFF"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/logout_anonymous"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginTop="13dp"
+                        android:background="#009a9a"
+                        android:drawableLeft="@drawable/anonymous"
+                        android:drawableStart="@drawable/anonymous"
+                        android:onClick="onClickSignInAnonymous"
+                        android:padding="16dp"
+                        android:text="เข้าสู่ระบบแบบไม่ระบุตัวตน"
+                        android:textColor="#FFF"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="3dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:background="#4a5a71"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="หรือ"
+                        android:textColor="#d9e5f3"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:background="#4a5a71"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp">
+
+                    <com.google.android.gms.common.SignInButton
+                        android:id="@+id/login_google"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"/>
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/login_facebook"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:paddingTop="16dp"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:paddingBottom="16dp" />
+                    <com.twitter.sdk.android.core.identity.TwitterLoginButton
+                        android:id="@+id/login_twitter"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="13dp"
+                        android:paddingTop="12dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:paddingBottom="12dp" />
+
+                    <!--<Button-->
+                        <!--android:id="@+id/login_github"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:layout_marginLeft="4dp"-->
+                        <!--android:layout_marginRight="4dp"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:background="#24292e"-->
+                        <!--android:drawableLeft="@drawable/github"-->
+                        <!--android:drawableStart="@drawable/github"-->
+                        <!--android:onClick="onClickSignInGithub"-->
+                        <!--android:padding="16dp"-->
+                        <!--android:text="เข้าสู่ระบบด้วย GitHub"-->
+                        <!--android:textColor="#FFF"-->
+                        <!--android:textStyle="bold" />-->
+
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

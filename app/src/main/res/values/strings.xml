@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Wallet Eazy Money</string>
+
+    <string name="facebook_app_id">1725475311081042</string>
+    <string name="fb_login_protocol_scheme">fb1725475311081042</string>
+
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">f5NxLEmklBxydta9Je9RdD9XL</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">tXQFCMBsKYdNRb8U7lN7hdyMwrkBiZGCfPoyR7TE3kwCn6aC3q</string>
+
+</resources>
