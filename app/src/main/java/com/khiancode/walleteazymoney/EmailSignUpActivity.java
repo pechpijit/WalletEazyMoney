@@ -2,22 +2,25 @@ package com.khiancode.walleteazymoney;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.facebook.login.LoginManager;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+import io.fabric.sdk.android.Fabric;
 
 public class EmailSignUpActivity extends BaseActivity {
 
@@ -35,6 +38,7 @@ public class EmailSignUpActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_sign_up_email);
 
         mAuth = FirebaseAuth.getInstance();
@@ -62,9 +66,9 @@ public class EmailSignUpActivity extends BaseActivity {
 
         showProgressDialog(REGIS);
 
-        String name = inputName.getText().toString();
-        String email = inputEmail.getText().toString();
-        String password = inputPassword.getText().toString();
+        final String name = inputName.getText().toString().trim();
+        String email = inputEmail.getText().toString().trim();
+        String password = inputPassword.getText().toString().trim();
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -74,13 +78,16 @@ public class EmailSignUpActivity extends BaseActivity {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signUpWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            AddUserData(user);
+                            AddUserData(user,name);
                         } else {
                             Log.w(TAG, "signUpWithEmail:failure", task.getException());
-                            if (task.getException().getMessage().contains("email address is already")) {
-                                registerFaile("ไม่สามารถใช้งานที่อยู่อีเมล์นี้ได้", "เนื่องจากที่อยู่อีเมลถูกใช้โดยบัญชีอื่นแล้ว");
-                            } else {
-                                registerFaile("ไม่สามารถสมัครสมาชิกได้", "ขออภัย เกิดข้อผิดพลาดบางอย่าง กรุณาลองใหม่อีกครั้งหรือติดต่อผู้พัฒนา");
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                dialogTM("ไม่สามารถใช้งานที่อยู่อีเมล์นี้ได้", "เนื่องจากที่อยู่อีเมลถูกใช้โดยบัญชีอื่นแล้ว กรุณาลองใหม่อีกครั้ง");
+                            }else if(task.getException() instanceof FirebaseNetworkException){
+                                dialogTM("ไม่สามารถเชื่อมต่อได้", "กรุณาตรวจสอบอินเทอร์เน็ตของท่าน และลองใหม่อีกครั้ง");
+                            }else {
+                                Crashlytics.logException(task.getException());
+                                dialogTM("ไม่สามารถสมัครสมาชิกได้", "ขออภัย เกิดข้อผิดพลาดบางอย่าง กรุณาลองใหม่อีกครั้งหรือติดต่อผู้พัฒนา");
                             }
                             btnSignup.setEnabled(true);
                             hideProgressDialog();
@@ -89,7 +96,24 @@ public class EmailSignUpActivity extends BaseActivity {
                 });
     }
 
-    private void AddUserData(FirebaseUser user) {
+    private void AddUserData(FirebaseUser user,String name) {
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(name)
+                .build();
+
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "User profile:success");
+                        } else {
+                            Log.w(TAG, "User profile:failure", task.getException());
+                            Crashlytics.logException(task.getException());
+                        }
+                    }
+                });
+
         onClickSendAgain(user);
     }
 
@@ -104,6 +128,7 @@ public class EmailSignUpActivity extends BaseActivity {
                             checkVerifiEmail(user);
                         } else {
                             Log.w(TAG, "sendEMail:failure", task.getException());
+                            Crashlytics.logException(task.getException());
                             dialogSendEmailFailed();
                         }
 
@@ -132,9 +157,9 @@ public class EmailSignUpActivity extends BaseActivity {
             finish();
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         } else {
-            Intent intent = new Intent(EmailSignUpActivity.this, VerifiEmailActivity.class);
-            intent.putExtra("usremail",inputEmail.getText().toString());
-            intent.putExtra("usrpass",inputPassword.getText().toString());
+            Intent intent = new Intent(EmailSignUpActivity.this, VerifyEmailActivity.class);
+            intent.putExtra("usremail",inputEmail.getText().toString().trim());
+            intent.putExtra("usrpass",inputPassword.getText().toString().trim());
             startActivity(intent);
             finish();
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -142,23 +167,15 @@ public class EmailSignUpActivity extends BaseActivity {
         hideProgressDialog();
     }
 
-    private void registerFaile(String title, String message) {
-        new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("ตกลง", null)
-                .setCancelable(true)
-                .show();
-    }
-
     public boolean validate() {
         boolean valid = true;
 
-        String email = inputEmail.getText().toString();
-        String password = inputPassword.getText().toString();
-        String confirmpassword = inputConfirmpassword.getText().toString();
+        String name = inputName.getText().toString().trim();
+        String email = inputEmail.getText().toString().trim();
+        String password = inputPassword.getText().toString().trim();
+        String confirmpassword = inputConfirmpassword.getText().toString().trim();
 
-        if (email.isEmpty()) {
+        if (name.isEmpty()) {
             inputName.setError("กรุณากรอกชื่อ");
             valid = false;
         } else {
@@ -179,7 +196,7 @@ public class EmailSignUpActivity extends BaseActivity {
             inputPassword.setError(null);
         }
 
-        if (!password.equals(confirmpassword)) {
+        if (!password.equals(confirmpassword) || password.length() < 4) {
             inputConfirmpassword.setError("กรุณากรอกรหัสให้ตรงกัน");
             valid = false;
         } else {

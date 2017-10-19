@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333"
+    android:fitsSystemWindows="true"
+    tools:context="com.khiancode.walleteazymoney.RecoveryActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="รีเซ็ตรหัสผ่าน"
+            android:textColor="#FFF"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="ลืมรหัสผ่านใช่หรือไม่ \n ท่านสามารถกู้คืนบัญชีด้วยการรีเช็ตรหัสผ่าน"
+            android:textAlignment="center"
+            android:textColor="#d9e5f3" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/view_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="กรุณากรอกอีเมล์ของบัญชีที่ต้องการรีเซ็ต"
+                    android:textAlignment="center"
+                    android:textColor="#FFF"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="60dp"
+                    android:paddingRight="60dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/message" />
+
+                        <EditText
+                            android:id="@+id/input_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:background="#00000000"
+                            android:hint="กรอกอีเมล์"
+                            android:textAlignment="center"
+                            android:inputType="textEmailAddress"
+                            android:textColor="#fff"
+                            android:textColorHint="#d9e5f3"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#4a5a71"></LinearLayout>
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_sendrecovery"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#009a9a"
+                        android:layout_marginTop="30dp"
+                        android:padding="16dp"
+                        android:text="ส่งอีเมล์รีเซ็ตรหัสผ่าน"
+                        android:textColor="#FFF"
+                        android:textStyle="bold"
+                        android:onClick="onClickSendRecover"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_height="1dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/view_sendsuccess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:visibility="invisible">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="ระบบส่งอีมล์รีเซ็ตรหัสผ่านให้ท่านเรียบร้อยแล้ว \n กรุณาตรวจสอบอีเมล์"
+                    android:textAlignment="center"
+                    android:textColor="#d9e5f3" />
+                <TextView
+                    android:id="@+id/txt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="กรุณาตรวจสอบอีเมล์"
+                    android:textAlignment="center"
+                    android:textColor="#009a9a"
+                    android:layout_marginTop="10dp"/>
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_sendrecoverysuccess"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#009a9a"
+                    android:layout_marginTop="30dp"
+                    android:padding="16dp"
+                    android:text="เสร็จสิ้น"
+                    android:textColor="#FFF"
+                    android:textStyle="bold"
+                    android:onClick="onClickSendRecoverSuccess"/>
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>

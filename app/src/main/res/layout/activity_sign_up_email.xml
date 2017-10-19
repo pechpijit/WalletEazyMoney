@@ -198,7 +198,7 @@
                     android:background="#009a9a"
                     android:padding="16dp"
                     android:text="ยืนยันการสมัคร"
-                    android:textColor="#d9e5f3"
+                    android:textColor="#FFF"
                     android:textStyle="bold"
                     android:onClick="onClickConfirmSignUp"/>
 

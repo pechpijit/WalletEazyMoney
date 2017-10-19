@@ -58,7 +58,7 @@
                     android:textAlignment="center"/>
 
                 <TextView
-                    android:id="@+id/txte_email"
+                    android:id="@+id/txt_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -99,14 +99,14 @@
                     android:background="#009a9a"
                     android:padding="16dp"
                     android:text="ยืนยันเรียบร้อยแล้ว"
-                    android:textColor="#d9e5f3"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:onClick="onClickConfirmVerifiEmail"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="13dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -141,8 +141,7 @@
                     android:layout_marginTop="10dp"
                     android:text="หากไม่ได้รับอีเมล์ยืนยัน \nสามารถส่งอีเมล์ยืนยันได้ในอีก"
                     android:textColor="#d9e5f3"
-                    android:textAlignment="center"
-                    android:onClick="onClickRecovery"/>
+                    android:textAlignment="center"/>
 
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btn_sendagain"

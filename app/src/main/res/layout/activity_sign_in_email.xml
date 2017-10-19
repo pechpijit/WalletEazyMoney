@@ -135,7 +135,7 @@
                     android:background="#009a9a"
                     android:padding="16dp"
                     android:text="เข้าสู่ระบบ"
-                    android:textColor="#d9e5f3"
+                    android:textColor="#FFF"
                     android:textStyle="bold"
                     android:onClick="onClickSignIn"/>
 
@@ -188,7 +188,7 @@
                     android:background="#009a9a"
                     android:padding="16dp"
                     android:text="สมัครสมาชิก"
-                    android:textColor="#d9e5f3"
+                    android:textColor="#FFF"
                     android:onClick="onClickSignUp"
                     android:textStyle="bold" />
 
